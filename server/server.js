@@ -9,12 +9,84 @@ app.use(express.static('server/public'));
 // calculation objects:
 let calculations = []
 
-
 // Here's a wonderful place to make some routes:
 
-// GET /calculations
+// GET /calculations 
+
+
 
 // POST /calculations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
