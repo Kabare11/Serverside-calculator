@@ -13,12 +13,21 @@ let calculations = []
 
 // GET /calculations 
 
-
-
 // POST /calculations
+app.post('/calculations', (req, res) => {
 
+  console.log(`Get a POST request!`, req.body);
 
+  let dataToReceive = req.body.number1;
 
+  console.log('Adding new quote:', dataToReceive)
+
+  // quoteList.push(quote);
+
+  res.sendStatus(201);
+});
+
+// Calculations
 
 
 
