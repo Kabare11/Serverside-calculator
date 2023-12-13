@@ -11,15 +11,15 @@
 <body>
   <h1>Server-Side Calculator</h1>
 
-  <form id="formInput" data-testid="calculator">
-    <input id="firstNumbImput" type="number" placeholder="First Number">
-    <button id="add" value="+" onclick="addBtn(event)">+</button>
-    <button id="sub" value="-" onclick="subBtn(event)">-</button>
-    <button id="multi" value="*" onclick="multipBtn(event)">*</button>
-    <button id="divide" value="/" onclick="divideBtn(event)">/</button>
-    <input id="secondNumImput" type="number" placeholder="Second Number">
-    <button id="equal" onclick="equalBtn(event)">=</button>
-    <button id="reset" onclick="resetBtn(event)">C</button>
+  <form data-testid="calculator">
+    <input id="firstInput" placeholder="First Number" type="number">
+    <button onclick="handleOperator(event)">+</button>
+    <button onclick="handleOperator(event)">-</button>
+    <button onclick="handleOperator(event)">*</button>
+    <button onclick="handleOperator(event)">/</button>
+    <input id="secondInput" placeholder="Second Number" type="number">
+    <button onclick="handleSubmit(event)">=</button>
+    <button onclick="handleClear(event)">C</button>
   </form>
 
   <section data-testid="recentResult">

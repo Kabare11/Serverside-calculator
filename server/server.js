@@ -12,27 +12,44 @@ let calculations = []
 // Here's a wonderful place to make some routes:
 
 // GET /calculations 
-
+app.get('/calculations', (req, res) => {
+  res.send(calculations)
+});
 // POST /calculations
+
 app.post('/calculations', (req, res) => {
 
-  console.log(`Get a POST request!`, req.body);
+  const { numOne, numTwo, operation } = req.body
 
-  let dataToReceive = req.body.number1;
+  const result = doMaths(numOne, operation, numTwo)
 
-  console.log('Adding new quote:', dataToReceive)
+  const newResult = {
+    numOne: +numOne, numTwo: +numTwo, operation, result
+  }
 
-  // quoteList.push(quote);
+  calculations.push(newResult)
 
-  res.sendStatus(201);
+  res.send(newResult)
+
 });
+
 
 // Calculations
 
-
-
-
-
+function doMaths(input1, operator, input2) {
+  switch (operator) {
+    case "+":
+      return +input1 + +input2
+    case "-":
+      return +input1 - +input2
+    case "*":
+      return +input1 * +input2
+    case "/":
+      return +input1 / +input2
+    default:
+      return NaN
+  }
+}
 
 
 
