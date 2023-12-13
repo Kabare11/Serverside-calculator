@@ -12,19 +12,22 @@ let calculations = []
 // Here's a wonderful place to make some routes:
 
 // GET /calculations 
+
 app.get('/calculations', (req, res) => {
+
   res.send(calculations)
 });
+
 // POST /calculations
 
 app.post('/calculations', (req, res) => {
 
-  const { numOne, numTwo, operation } = req.body
+  const { numOne, numTwo, operator } = req.body
 
-  const result = doMaths(numOne, operation, numTwo)
+  const result = doMaths(numOne, operator, numTwo)
 
   const newResult = {
-    numOne: +numOne, numTwo: +numTwo, operation, result
+    numOne: +numOne, numTwo: +numTwo, operator, result
   }
 
   calculations.push(newResult)
