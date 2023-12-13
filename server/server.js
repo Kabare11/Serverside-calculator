@@ -24,7 +24,7 @@ app.post('/calculations', (req, res) => {
 
   const { numOne, numTwo, operator } = req.body
 
-  const result = doMaths(newResult)
+  const result = doMaths(numOne, operator, numTwo)
 
   const newResult = {
     numOne: +numOne, numTwo: +numTwo, operator, result
