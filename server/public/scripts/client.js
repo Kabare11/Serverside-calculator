@@ -1,4 +1,7 @@
+// const axios = require("./axios.js")
 
+const recentResult = document.getElementById("recentResult")
+const resultHistory = document.getElementById("resultHistory")
 // Global variable to store the current operator selected by the user through the DOM.
 let operator;
 
@@ -84,7 +87,8 @@ function renderLatestAnswer(history) {
     console.log("Rendering Answer...");
     const lastHistory = history[history.length - 1];
     console.log("Last item:", lastHistory);
-    document.getElementById("recentResult").innerText = lastHistory.result;
+    // document.getElementById("recentResult").innerText = lastHistory.result;
+    recentResult.innerHTML = lastHistory.result
 }
 
 /**
@@ -93,10 +97,9 @@ function renderLatestAnswer(history) {
  */
 function renderHistory(history) {
     console.log("Rendering History...");
-    let placeToRender = document.getElementById("resultHistory");
-    placeToRender.innerHTML = '';
+    resultHistory.innerHTML = '';
     history.forEach(item => {
-        placeToRender.innerHTML += `<li>${item.numOne} ${item.operator} ${item.numTwo} = ${item.result}</li>`;
+        resultHistory.innerHTML += `<li>${item.numOne} ${item.operator} ${item.numTwo} = ${item.result}</li>`;
     });
 }
 
