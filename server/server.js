@@ -49,6 +49,7 @@ app.post('/calculations', (req, res) => {
 })
 // Calculations
 
+  calculations.push(newResult)
 
 function doCalculation(numOne, numTwo, operator) {
   switch (operator) {
@@ -66,6 +67,22 @@ function doCalculation(numOne, numTwo, operator) {
 }
 
 
+// Calculations
+
+function doMaths(input1, operator, input2) {
+  switch (operator) {
+    case "+":
+      return +input1 + +input2
+    case "-":
+      return +input1 - +input2
+    case "*":
+      return +input1 * +input2
+    case "/":
+      return +input1 / +input2
+    default:
+      return NaN
+  }
+}
 
 
 
