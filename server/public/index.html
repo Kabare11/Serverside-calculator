@@ -13,20 +13,20 @@
 
   <form id="formInput" data-testid="calculator">
     <input id="firstNumbImput" type="number" placeholder="First Number">
-    <button id="add" value="+" onclick="addBtn(event)">+</button>
-    <button id="sub" value="-" onclick="subBtn(event)">-</button>
-    <button id="multi" value="*" onclick="multipBtn(event)">*</button>
-    <button id="divide" value="/" onclick="divideBtn(event)">/</button>
+    <button id="add" value="+" onclick="handleOperation(event)">+</button>
+    <button id="sub" value="-" onclick="handleOperation(event)">-</button>
+    <button id="multi" value="*" onclick="handleOperation(event)">*</button>
+    <button id="divide" value="/" onclick="handleOperation(event)">/</button>
     <input id="secondNumImput" type="number" placeholder="Second Number">
-    <button id="equal" onclick="equalBtn(event)">=</button>
+    <button role="button" id="equal" name="=" onclick="equalBtn(event)">=</button>
     <button id="reset" onclick="resetBtn(event)">C</button>
   </form>
 
-  <section data-testid="recentResult">
+  <section id="recentResult" data-testid="recentResult">
     <!-- The most recent calculation result goes here. -->
   </section>
 
-  <section data-testid="resultHistory">
+  <section id="resultHistory" data-testid="resultHistory">
     <!-- The list of calculation results goes here. -->
   </section>
 </body>

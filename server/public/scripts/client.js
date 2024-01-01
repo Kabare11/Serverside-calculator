@@ -1,36 +1,26 @@
-const { post } = require("../../server");
-
-console.log('client.js is sourced!');
-
 let operation;
+let firstNumbImput = document.getElementById("firstNumbImput")
+let secondNumImput = document.getElementById("secondNumImput")
+let resultHistory = document.getElementById("resultHistory")
+let recentResult = document.getElementById("recentResult")
 
-function addBtn(event) {
-    event.preventDefault()
-    console.log('inside add btn', event);
-    operation = document.getElementById('add').value
-    console.log('this is opertaion', operation);
+function getHistory() {
+    axios({
+        method: 'GET',
+        url: '/calculations',
+    }).then(res => printHistory(res.data))
 }
+getHistory()
 
+function printHistory(data) {
+    resultHistory.innerHTML = ""
+    data.forEach(item => {
+        resultHistory.innerHTML += `<div>${item.numOne} ${item.operator} ${item.numTwo} = ${item.result}</div>`;
+    });
 
-function subBtn(event) {
-    event.preventDefault()
-    console.log('inside sub btn', event);
-    operation = document.getElementById('sub').value
-    console.log('this is opertaion', operation);
-}
+    const lastHistory = data[data.length - 1];
 
-function multipBtn(event) {
-    event.preventDefault()
-    console.log('inside multip btn');
-    operation = document.getElementById('multi').value
-    console.log('this is opertaion', operation);
-}
-
-function divideBtn(event) {
-    event.preventDefault()
-    console.log('inside divide btn');
-    operation = document.getElementById('divide').value
-    console.log('this is opertaion', operation);
+    recentResult.innerHTML = `<h2>${lastHistory.result}</h2>`
 }
 
 function equalBtn(event) {
@@ -41,30 +31,32 @@ function equalBtn(event) {
     console.log('inside equal btn', numb1, operation, numb2);
 
     let datToSend = {
-        number1: numb1,
-        number2: numb2,
+        numOne: numb1,
+        numTwo: numb2,
         operator: operation
     }
     console.log('This is data being sent', datToSend);
+    try {
+        axios.post("/calculations", datToSend)
+        // resetBtn()
+        getHistory()
+        firstNumbImput.value = 0
+        secondNumImput.value = 0
+    }
+    catch (err) {
+        console.log(err)
+    }
 
-    axios({
-        method: 'POST',
-        url: '/calculations',
-        data: datToSend
-
-    })
-        .then(function (response) {
-            console.log("SUCCESS!!!", response.data);
-
-        })
-        .catch(function (error) {
-
-            alert('POST failed. Try again later.');
-        });
 }
 
 function resetBtn(event) {
     event.preventDefault()
-    console.log('inside reset btn');
+    firstNumbImput.value = 0
+    secondNumImput.value = 0
 }
 
+function handleOperation(event) {
+    event.preventDefault()
+    operation = event.target.value
+    console.log(operation)
+}

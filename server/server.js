@@ -5,32 +5,65 @@ let PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.static('server/public'));
 
+
+
 // Global variable that will contain all of the
 // calculation objects:
-let calculations = []
+let calculations = [
+
+  {
+    numOne: 1,
+    numTwo: 2,
+    operator: '+',
+    result: 3
+  },
+  {
+    numOne: 3,
+    numTwo: 5,
+    operator: '*',
+    result: 15
+  }
+]
+
 
 // Here's a wonderful place to make some routes:
 
 // GET /calculations 
+app.get('/calculations', (req, res) => {
+  // console.log("Touchdown, /calculations GET")
+  res.send(calculations)
+})
+
 
 // POST /calculations
 app.post('/calculations', (req, res) => {
+  const { numOne, numTwo, operator } = req.body
+  const result = doCalculation(numOne, numTwo, operator)
+  // console.log(result)
+  const newHistory = {
+    numOne, numTwo, operator, result
+  }
 
-  console.log(`Get a POST request!`, req.body);
-
-  let dataToReceive = req.body.number1;
-
-  console.log('Adding new quote:', dataToReceive)
-
-  // quoteList.push(quote);
-
-  res.sendStatus(201);
-});
-
+  calculations.push(newHistory)
+  res.json({ result })
+})
 // Calculations
 
 
-
+function doCalculation(numOne, numTwo, operator) {
+  switch (operator) {
+    case "+": // ! If the operator is a +
+      return +numOne + +numTwo
+    case "-": // ! If the operator is a -
+      return numOne - numTwo
+    case "*": // ! If the operator is a *
+      return numOne * numTwo
+    case "/": // ! If the operator is a /
+      return numOne / numTwo
+    default:
+      return NaN
+  }
+}
 
 
 
