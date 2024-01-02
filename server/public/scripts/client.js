@@ -36,23 +36,24 @@ function equalBtn(event) {
         operator: operation
     }
     console.log('This is data being sent', datToSend);
-    try {
-        axios.post("/calculations", datToSend)
-        // resetBtn()
+    axios({
+        method: "POST",
+        url: "/calculations",
+        data: datToSend
+    }).then(() => {
         getHistory()
-        firstNumbImput.value = 0
-        secondNumImput.value = 0
-    }
-    catch (err) {
+        firstNumbImput.value = ""
+        secondNumImput.value = ""
+    }).catch(err => {
         console.log(err)
-    }
+    })
 
 }
 
 function resetBtn(event) {
     event.preventDefault()
-    firstNumbImput.value = 0
-    secondNumImput.value = 0
+    firstNumbImput.value = ""
+    secondNumImput.value = ""
 }
 
 function handleOperation(event) {

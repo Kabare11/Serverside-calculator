@@ -45,11 +45,9 @@ app.post('/calculations', (req, res) => {
   }
 
   calculations.push(newHistory)
-  res.json({ result })
+  res.sendStatus(201)
 })
 // Calculations
-
-  calculations.push(newResult)
 
 function doCalculation(numOne, numTwo, operator) {
   switch (operator) {
